@@ -1,19 +1,52 @@
 from ex0.CreatureCard import CreatureCard
 
-def main():
-    creature = CreatureCard("Dragon", cost=5, rarity="Rare", attack=7, health=6)
 
-    # Test the methods
+def main() -> None:
+    print("=== DataDeck Card Foundation ===")
+
+    print("\nTesting Abstract Base Class Design:\n")
+    try:
+        creature = CreatureCard(
+            "Fire Dragon",
+            cost=5,
+            rarity="Legendary",
+            creature_type="Creature",
+            attack=7,
+            health=6,
+        )
+        combat_c = CreatureCard(
+            "Goblin Warrior",
+            cost=5,
+            rarity="Rare",
+            creature_type="Creature",
+            attack=1,
+            health=5,
+        )
+    except (TypeError, ValueError) as e:
+        print(f"ERROR: {e}!")
+        return
+
+    game_state = {"battlefield": [], "current_mana": 6}
+
+    print("CreatureCard Info:")
     print(creature.get_card_info())
-    print(f"Playable with 5 mana: {creature.is_playable(5)}")
-    print(f"Playable with 3 mana: {creature.is_playable(3)}")
 
-    # Test play method
-    game_state = {'battlefield': [], 'current_mana': 10}
-    creature.play(game_state)
-    print(f"Battlefield: {[c.name for c in game_state['battlefield']]}")
-    print(f"Remaining mana: {game_state['current_mana']}")
+    print(f"\nPlaying {creature.name} with "
+          f"{game_state['current_mana']} mana available:")
+    print("Playable:", creature.is_playable(game_state["current_mana"]))
+    print("Play result:", creature.play(game_state))
+
+    print(f"\n{creature.name} attacks {combat_c.name}:")
+    print("Attack result:", creature.attack_target(combat_c))
+
+    game_state = {"battlefield": [], "current_mana": 3}
+    print(f"\nTesting insufficient mana "
+          f"({game_state['current_mana']} available)")
+    print("Playable:", creature.is_playable(game_state["current_mana"]))
+    print("Play result:", creature.play(game_state))
+
+    print("\nAbstract pattern successfully demonstrated!")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
