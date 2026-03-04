@@ -37,10 +37,10 @@ def main() -> None:
     print(f"\n{creature.name} attacks {combat_c.name}:")
     print("Attack result:", creature.attack_target(combat_c))
 
-    game_state = {"battlefield": [], "current_mana": 3}
+    game_state_test = {"battlefield": [], "current_mana": 3}
     print(f"\nTesting insufficient mana "
-          f"({game_state['current_mana']} available)")
-    print("Playable:", creature.is_playable(game_state["current_mana"]))
+          f"({game_state_test['current_mana']} available)")
+    print("Playable:", creature.is_playable(game_state_test["current_mana"]))
 
     print("\nAbstract pattern successfully demonstrated!")
 
