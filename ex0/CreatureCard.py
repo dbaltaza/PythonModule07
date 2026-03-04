@@ -9,7 +9,6 @@ class CreatureCard(Card):
         name: str,
         cost: int,
         rarity: str,
-        creature_type: str,
         attack: int,
         health: int,
     ) -> None:
@@ -20,11 +19,10 @@ class CreatureCard(Card):
         if not isinstance(health, int) or health <= 0:
             raise ValueError("Health must be a positive int")
 
-        self.creature_type = creature_type
         self.attack = attack
         self.health = health
 
-    def play(self, game_state: dict[str, Any]) -> dict[str, Any]:
+    def play(self, game_state: dict) -> dict[str, Any]:
         try:
             battlefield = game_state["battlefield"]
             current_mana = game_state["current_mana"]
@@ -64,7 +62,7 @@ class CreatureCard(Card):
             "name": self.name,
             "cost": self.cost,
             "rarity": self.rarity,
-            "type": self.creature_type,
+            "type": "Creature",
             "attack": self.attack,
             "health": self.health,
         }

@@ -10,15 +10,13 @@ def main() -> None:
             "Fire Dragon",
             cost=5,
             rarity="Legendary",
-            creature_type="Creature",
             attack=7,
-            health=6,
+            health=5,
         )
         combat_c = CreatureCard(
             "Goblin Warrior",
             cost=5,
             rarity="Rare",
-            creature_type="Creature",
             attack=1,
             health=5,
         )
@@ -43,7 +41,6 @@ def main() -> None:
     print(f"\nTesting insufficient mana "
           f"({game_state['current_mana']} available)")
     print("Playable:", creature.is_playable(game_state["current_mana"]))
-    print("Play result:", creature.play(game_state))
 
     print("\nAbstract pattern successfully demonstrated!")
 
